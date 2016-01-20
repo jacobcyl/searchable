@@ -1,4 +1,4 @@
-<?php namespace jacobcyl\Searchable;
+<?php namespace Jacobcyl\Searchable;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Expression;
