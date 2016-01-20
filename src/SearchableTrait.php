@@ -187,6 +187,9 @@ trait SearchableTrait
             foreach ($this->getColumns() as $column => $relevance) {
                 array_map(function ($join) use ($column, $query) {
                     if (Str::contains($column, $join)) {
+                        if(Str::startsWith($column, DB::getTablePrefix())){
+                            $column = substr($column, strlen(DB::getTablePrefix()));
+                        }
                         $query->groupBy($column);
                     }
                 }, $joins);
@@ -301,7 +304,7 @@ trait SearchableTrait
         $count = $this->getDatabaseDriver() != 'mysql' ? 2 : 1;
         for ($i = 0; $i < $count; $i++) {
             foreach($bindings as $binding) {
-                $type = $i == 0 ? 'select' : 'having';
+                $type = $i == 0 ? 'where' : 'having';
                 $query->addBinding($binding, $type);
             }
         }
@@ -314,10 +317,11 @@ trait SearchableTrait
      * @param \Illuminate\Database\Eloquent\Builder $original
      */
     protected function mergeQueries(Builder $clone, Builder $original) {
+        $prefix = DB::getTablePrefix();
         if($this->getDatabaseDriver() == 'pgsql'){
             $original->from(DB::connection($this->connection)->raw("({$clone->toSql()}) as {$this->getTable()}"));
         }else{
-            $original->from(DB::connection($this->connection)->raw("({$clone->toSql()}) as `{$this->getTable()}`"));
+            $original->from(DB::connection($this->connection)->raw("({$clone->toSql()}) as `{$prefix}{$this->getTable()}`"));
         }
         $original->mergeBindings($clone->getQuery());
     }
