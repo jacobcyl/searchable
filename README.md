@@ -1,3 +1,6 @@
+<h2>base https://github.com/nicolaslopezj/searchable
+<h3>because of I can not use composer to update my fork package of nicolaslopezj/searchable ,I have to add a new package on packagist.org. Thanks to @nicolaslopezj
+
 Searchable, a search trait for Laravel
 ==========================================
 
