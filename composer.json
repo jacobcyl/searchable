@@ -19,5 +19,5 @@
             "Nicolaslopezj\\Searchable\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
