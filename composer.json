@@ -7,6 +7,10 @@
         {
             "name": "Nicolas Lopez",
             "email": "nicolaslopezj@me.com"
+        },
+        {
+            "name": "Jacob Chen",
+            "email": "cyl.jacob@gmail.com"
         }
     ],
     "require": {
@@ -16,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Nicolaslopezj\\Searchable\\": "src/"
+            "Jacobcyl\\Searchable\\": "src/"
         }
     },
     "minimum-stability": "dev"
